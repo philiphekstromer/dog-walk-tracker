@@ -8,7 +8,7 @@ export const SettingsDrawer = ({
   onChangeInterval,
 }: SettingsDrawerProps) => {
   return (
-    //This should be a drawer, but for simplicity, it's currently just a card with buttons.
+    //This should be a drawer, but for simplicity, it's currently just a card with buttons. Will be replaced with a proper drawer in the future.
     <div className="card">
       Set interval between walks:
       <button
