@@ -5,7 +5,19 @@ import { SettingsDrawer } from "./components/SettingsDrawer";
 const STORAGE_KEY = "dog-walk-next"; //Key to store the next walk time in localStorage
 
 function App() {
-  // ----- STATE --------
+  // ----- TYPES --------
+  type Walk = {
+    id: string;
+    minutes: number;
+    createdAt: number;
+  };
+
+  // ----- STATES --------
+
+  // State for walk history
+  const [walks, setWalks] = useState<Walk[]>([]);
+  const [isDurationSettingsOpen, setIsDurationSettingsOpen] = useState(false);
+
   // State for settings
   const [intervalHours, setIntervalHours] = useState<number>(() => {
     const stored = localStorage.getItem("intervalHours");
@@ -71,6 +83,25 @@ function App() {
 
   // --------
 
+  // ----- WALK HISTORY -----
+  const handleWalkDone = () => {
+    setIsDurationSettingsOpen(true);
+  };
+
+  const saveWalk = (minutes: number) => {
+    const newWalk: Walk = {
+      id: crypto.randomUUID(),
+      minutes,
+      createdAt: Date.now(),
+    };
+
+    setWalks((prev) => [...prev, newWalk]);
+
+    startCountdown();
+
+    setIsDurationSettingsOpen(false);
+  };
+
   return (
     <>
       <div style={{ padding: 40, textAlign: "center" }}>
@@ -87,7 +118,22 @@ function App() {
           <h2>No active countdown</h2>
         )}
 
-        <button onClick={startCountdown}>Done walking</button>
+        {isDurationSettingsOpen && (
+          <div className="card">
+            How long was the walk?
+            <button onClick={() => saveWalk(15)}>15 minutes</button>
+            <button onClick={() => saveWalk(30)}>30 minutes</button>
+            <button onClick={() => saveWalk(45)}>45 minutes</button>
+          </div>
+        )}
+
+        <button onClick={handleWalkDone}>Done walking</button>
+        <h2>Walk history</h2>
+        <ul>
+          {walks.map((walk) => (
+            <li key={walk.id}>{walk.minutes} min</li>
+          ))}
+        </ul>
       </div>
     </>
   );
