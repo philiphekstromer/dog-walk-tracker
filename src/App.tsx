@@ -5,12 +5,14 @@ import { SettingsDrawer } from "./components/SettingsDrawer";
 const STORAGE_KEY = "dog-walk-next"; //Key to store the next walk time in localStorage
 
 function App() {
-  // SETTINGS
+  // ----- STATE --------
+  // State for settings
   const [intervalHours, setIntervalHours] = useState<number>(() => {
     const stored = localStorage.getItem("intervalHours");
     return stored ? Number(stored) : 6;
   });
 
+  //State for countdown logic
   const [now, setNow] = useState(Date.now);
 
   const [nextWalkTime, setNextWalkTime] = useState<number | null>(() => {
@@ -18,14 +20,7 @@ function App() {
     return stored ? Number(stored) : null;
   });
 
-  // Tick every second
-  useEffect(() => {
-    const id = setInterval(() => {
-      setNow(Date.now());
-    }, 1000);
-
-    return () => clearInterval(id);
-  }, []);
+  // ----- STORAGE --------
 
   // Persist storage of the interval between walks
   useEffect(() => {
@@ -41,25 +36,40 @@ function App() {
     }
   }, [nextWalkTime]);
 
-  const TIME_BETWEEN_WALKS = intervalHours * 60 * 60 * 1000; // Convert hours to milliseconds
+  // --------
 
-  // Start a new countdown for the next walk
-  const startCountdown = () => {
-    const nextTime = Date.now() + TIME_BETWEEN_WALKS;
-    setNextWalkTime(nextTime);
-  };
+  // ----- COUNTDOWN -----
 
-  const remainingTime = nextWalkTime ? nextWalkTime - now : null; // Calculate remaining time until the next walk
+  // Make countdown tick every second
+  useEffect(() => {
+    const id = setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
 
-  const isActiveWalk = remainingTime !== null && remainingTime > 0; // Check if there's an active countdown
+    return () => clearInterval(id);
+  }, []);
 
-  // Format the remaining time into hours and minutes
+  // Format the time into hours and minutes
   const formatTime = (ms: number) => {
     const totalSeconds = Math.floor(ms / 1000);
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     return `${hours}h ${minutes}m`;
   };
+
+  const remainingTime = nextWalkTime ? nextWalkTime - now : null; // Calculate remaining time until the next walk
+
+  const isActiveWalk = remainingTime !== null && remainingTime > 0; // Check if there's an active countdown
+
+  const TIME_BETWEEN_WALKS = intervalHours * 60 * 60 * 1000; // Convert hours to milliseconds
+
+  // Start a new countdown for the next walk
+  const startCountdown = () => {
+    const nextWalk = Date.now() + TIME_BETWEEN_WALKS;
+    setNextWalkTime(nextWalk);
+  };
+
+  // --------
 
   return (
     <>
