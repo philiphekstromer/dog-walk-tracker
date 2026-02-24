@@ -126,14 +126,13 @@ function App() {
             <button onClick={() => saveWalk(45)}>45 minutes</button>
           </div>
         )}
-
-        <button onClick={handleWalkDone}>Done walking</button>
         <h2>Walk history</h2>
         <ul>
           {walks.map((walk) => (
             <li key={walk.id}>{walk.minutes} min</li>
           ))}
         </ul>
+        <button onClick={handleWalkDone}>Done walking</button>
       </div>
     </>
   );
