@@ -1,21 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { SettingsDrawer } from "./components/SettingsDrawer";
+import { useWalks } from "./hooks/useWalks";
 
 const STORAGE_KEY = "dog-walk-next"; //Key to store the next walk time in localStorage
 
 function App() {
-  // ----- TYPES --------
-  type Walk = {
-    id: string;
-    minutes: number;
-    createdAt: number;
-  };
-
-  // ----- STATES --------
-
   // State for walk history
-  const [walks, setWalks] = useState<Walk[]>([]);
   const [isDurationSettingsOpen, setIsDurationSettingsOpen] = useState(false);
 
   // State for settings
@@ -84,18 +75,15 @@ function App() {
   // --------
 
   // ----- WALK HISTORY -----
+
+  const { walks, addWalk } = useWalks(); // Custom hook to manage walk history
+
   const handleWalkDone = () => {
     setIsDurationSettingsOpen(true);
   };
 
-  const saveWalk = (minutes: number) => {
-    const newWalk: Walk = {
-      id: crypto.randomUUID(),
-      minutes,
-      createdAt: Date.now(),
-    };
-
-    setWalks((prev) => [...prev, newWalk]);
+  const completeWalk = (minutes: number) => {
+    addWalk(minutes);
 
     startCountdown();
 
@@ -121,9 +109,9 @@ function App() {
         {isDurationSettingsOpen && (
           <div className="card">
             How long was the walk?
-            <button onClick={() => saveWalk(15)}>15 minutes</button>
-            <button onClick={() => saveWalk(30)}>30 minutes</button>
-            <button onClick={() => saveWalk(45)}>45 minutes</button>
+            <button onClick={() => completeWalk(15)}>15 minutes</button>
+            <button onClick={() => completeWalk(30)}>30 minutes</button>
+            <button onClick={() => completeWalk(45)}>45 minutes</button>
           </div>
         )}
         <h2>Walk history</h2>
