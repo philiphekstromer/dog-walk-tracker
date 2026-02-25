@@ -97,7 +97,7 @@ function App() {
           display: "flex",
           flexDirection: "column",
           textAlign: "center",
-          height: "100dvh",
+          height: "90dvh",
         }}
       >
         <h1>Dog Walk Timer</h1>
