@@ -92,7 +92,14 @@ function App() {
 
   return (
     <>
-      <div style={{ padding: 40, textAlign: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "center",
+          height: "100dvh",
+        }}
+      >
         <h1>Dog Walk Timer</h1>
 
         <SettingsDrawer
@@ -106,6 +113,27 @@ function App() {
           <h2>No active countdown</h2>
         )}
 
+        <h2>Walk history</h2>
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            overflowY: "auto",
+            flexDirection: "column",
+            gap: "0.5rem",
+            alignItems: "stretch",
+          }}
+        >
+          {walks.map((walk) => (
+            <div key={walk.id} className="history-card">
+              {walk.minutes} min at{" "}
+              {new Date(walk.createdAt).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </div>
+          ))}
+        </div>
         {isDurationSettingsOpen && (
           <div className="card">
             How long was the walk?
@@ -114,18 +142,7 @@ function App() {
             <button onClick={() => completeWalk(45)}>45 minutes</button>
           </div>
         )}
-        <h2>Walk history</h2>
-        <ul>
-          {walks.map((walk) => (
-            <li key={walk.id}>
-              {walk.minutes} min at{" "}
-              {new Date(walk.createdAt).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </li>
-          ))}
-        </ul>
+
         <button onClick={handleWalkDone}>Done walking</button>
       </div>
     </>
