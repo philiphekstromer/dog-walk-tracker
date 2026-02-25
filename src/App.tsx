@@ -76,7 +76,7 @@ function App() {
 
   // ----- WALK HISTORY -----
 
-  const { walks, addWalk } = useWalks(); // Custom hook to manage walk history
+  const { walks, addWalk, deleteWalk } = useWalks(); // Custom hook to manage walk history
 
   const handleWalkDone = () => {
     setIsDurationSettingsOpen(true);
@@ -131,6 +131,16 @@ function App() {
                 hour: "2-digit",
                 minute: "2-digit",
               })}
+              <button
+                style={{
+                  background: "red",
+                  color: "white",
+                  padding: "0.25rem",
+                }}
+                onClick={() => deleteWalk(walk.id)}
+              >
+                Delete
+              </button>
             </div>
           ))}
         </div>
