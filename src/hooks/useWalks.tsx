@@ -27,7 +27,7 @@ export const useWalks = () => {
       createdAt: Date.now(),
     };
 
-    setWalks((prev) => [...prev, newWalk]);
+    setWalks((prev) => [newWalk, ...prev]);
   };
 
   const deleteWalk = (id: string) => {
