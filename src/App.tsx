@@ -129,7 +129,13 @@ function App() {
         <h2>Walk history</h2>
         <ul>
           {walks.map((walk) => (
-            <li key={walk.id}>{walk.minutes} min</li>
+            <li key={walk.id}>
+              {walk.minutes} min at{" "}
+              {new Date(walk.createdAt).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </li>
           ))}
         </ul>
         <button onClick={handleWalkDone}>Done walking</button>
