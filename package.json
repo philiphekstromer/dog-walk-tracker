@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://phieksmig.github.io/dog-walk-tracker",
+  "homepage": "https://philiphekstromer.github.io/dog-walk-tracker",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
