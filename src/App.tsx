@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { SettingsDrawer } from "./components/SettingsDrawer";
 import { useWalks } from "./hooks/useWalks";
+import { formatWalkDate } from "./utilities/FormatDate";
 
 const STORAGE_KEY = "dog-walk-next"; //Key to store the next walk time in localStorage
 
@@ -126,11 +127,7 @@ function App() {
         >
           {walks.map((walk) => (
             <div key={walk.id} className="history-card">
-              {walk.minutes} min at{" "}
-              {new Date(walk.createdAt).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
+              {walk.minutes} min {formatWalkDate(walk.createdAt)}
               <button
                 style={{
                   background: "red",
