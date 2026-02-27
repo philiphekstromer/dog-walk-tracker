@@ -1,6 +1,6 @@
 # Dog walk tracker
 
-A simple app to remind you when it's time to walk the dog. <a href="https://phieksmig.github.io/dog-walk-tracker">Try it out here</a>
+A simple app to remind you when it's time to walk the dog. <a href="https://philiphekstromer.github.io/dog-walk-tracker">Try it out here</a>
 
 
 <!-- ABOUT THE PROJECT -->
