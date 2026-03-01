@@ -3,7 +3,10 @@ import "./App.css";
 import { SettingsDrawer } from "./components/SettingsDrawer";
 import { useWalks } from "./hooks/useWalks";
 import { useCountdown } from "./hooks/useCountdown";
-import { formatWalkDate } from "./utilities/FormatDate";
+import {
+  formatWalkDate,
+  formatCountdownTime,
+} from "./utilities/FormatDateAndTime";
 
 const STORAGE_KEY = "dog-walk-next"; //Key to store the next walk time in localStorage
 
@@ -49,14 +52,6 @@ function App() {
     setNextWalkTime,
   });
 
-  // Format the time into hours and minutes
-  const formatTime = (ms: number) => {
-    const totalSeconds = Math.floor(ms / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    return `${hours}h ${minutes}m`;
-  };
-
   // --------
 
   // ----- WALK HISTORY -----
@@ -93,7 +88,7 @@ function App() {
         />
 
         {status === "active" && remainingTime !== null ? (
-          <h2>{formatTime(remainingTime)}</h2>
+          <h2>{formatCountdownTime(remainingTime)}</h2>
         ) : (
           <h2>No active countdown</h2>
         )}
