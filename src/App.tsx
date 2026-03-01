@@ -70,17 +70,17 @@ function App() {
         }}
       >
         <h1>Dog Walk Timer</h1>
-
         <SettingsDrawer
           intervalHours={intervalHours}
           onChangeInterval={setIntervalHours}
         />
-
         {status === "active" && remainingTime !== null ? (
           <h2>{formatCountdownTime(remainingTime)}</h2>
-        ) : (
-          <h2>No active countdown</h2>
-        )}
+        ) : status === "expired" ? (
+          <h2>Time for a walk!</h2>
+        ) : status === "idle" ? (
+          <h2>Ready to start tracking walks!</h2>
+        ) : null}
 
         <h2>Walk history</h2>
         <div
@@ -117,7 +117,6 @@ function App() {
             <button onClick={() => completeWalk(45)}>45 minutes</button>
           </div>
         )}
-
         <button onClick={handleWalkDone}>Done walking</button>
       </div>
     </>
