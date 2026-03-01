@@ -2,11 +2,16 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { SettingsDrawer } from "./components/SettingsDrawer";
 import { useWalks } from "./hooks/useWalks";
-import { formatWalkDate } from "./utilities/FormatDate";
+import { useCountdown } from "./hooks/useCountdown";
+import {
+  formatWalkDate,
+  formatCountdownTime,
+} from "./utilities/FormatDateAndTime";
 
 const STORAGE_KEY = "dog-walk-next"; //Key to store the next walk time in localStorage
 
 function App() {
+  // --- STATES ---
   // State for walk history
   const [isDurationSettingsOpen, setIsDurationSettingsOpen] = useState(false);
 
@@ -17,14 +22,13 @@ function App() {
   });
 
   //State for countdown logic
-  const [now, setNow] = useState(Date.now);
 
   const [nextWalkTime, setNextWalkTime] = useState<number | null>(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored ? Number(stored) : null;
   });
 
-  // ----- STORAGE --------
+  // --- STORAGE ---
 
   // Persist storage of the interval between walks
   useEffect(() => {
@@ -40,44 +44,18 @@ function App() {
     }
   }, [nextWalkTime]);
 
-  // --------
+  // --- COUNTDOWN ---
+  const { startCountdown, remainingTime, status } = useCountdown({
+    intervalHours,
+    nextWalkTime,
+    setNextWalkTime,
+  });
 
-  // ----- COUNTDOWN -----
-
-  // Make countdown tick every second
-  useEffect(() => {
-    const id = setInterval(() => {
-      setNow(Date.now());
-    }, 1000);
-
-    return () => clearInterval(id);
-  }, []);
-
-  // Format the time into hours and minutes
-  const formatTime = (ms: number) => {
-    const totalSeconds = Math.floor(ms / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    return `${hours}h ${minutes}m`;
-  };
-
-  const remainingTime = nextWalkTime ? nextWalkTime - now : null; // Calculate remaining time until the next walk
-
-  const isActiveWalk = remainingTime !== null && remainingTime > 0; // Check if there's an active countdown
-
-  const TIME_BETWEEN_WALKS = intervalHours * 60 * 60 * 1000; // Convert hours to milliseconds
-
-  // Start a new countdown for the next walk
-  const startCountdown = () => {
-    const nextWalk = Date.now() + TIME_BETWEEN_WALKS;
-    setNextWalkTime(nextWalk);
-  };
-
-  // --------
-
-  // ----- WALK HISTORY -----
+  // --- WALK HISTORY ---
 
   const { walks, addWalk, deleteWalk } = useWalks(); // Custom hook to manage walk history
+
+  //--- APP LOGIC ---
 
   const handleWalkDone = () => {
     setIsDurationSettingsOpen(true);
@@ -91,6 +69,7 @@ function App() {
     setIsDurationSettingsOpen(false);
   };
 
+  //--- RENDER ---
   return (
     <>
       <div
@@ -108,8 +87,8 @@ function App() {
           onChangeInterval={setIntervalHours}
         />
 
-        {isActiveWalk ? (
-          <h2>{formatTime(remainingTime)}</h2>
+        {status === "active" && remainingTime !== null ? (
+          <h2>{formatCountdownTime(remainingTime)}</h2>
         ) : (
           <h2>No active countdown</h2>
         )}
