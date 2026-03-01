@@ -7,13 +7,10 @@ import {
   formatWalkDate,
   formatCountdownTime,
 } from "./utilities/FormatDateAndTime";
-
-const STORAGE_KEY = "dog-walk-next"; //Key to store the next walk time in localStorage
+import { useWalkCompletion } from "./hooks/useWalkCompletion";
 
 function App() {
   // --- STATES ---
-  // State for walk history
-  const [isDurationSettingsOpen, setIsDurationSettingsOpen] = useState(false);
 
   // State for settings
   const [intervalHours, setIntervalHours] = useState<number>(() => {
@@ -22,9 +19,8 @@ function App() {
   });
 
   //State for countdown logic
-
   const [nextWalkTime, setNextWalkTime] = useState<number | null>(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = localStorage.getItem("nextWalkTime");
     return stored ? Number(stored) : null;
   });
 
@@ -38,36 +34,27 @@ function App() {
   // Persistant storage of the next walk time
   useEffect(() => {
     if (nextWalkTime) {
-      localStorage.setItem(STORAGE_KEY, String(nextWalkTime));
+      localStorage.setItem("nextWalkTime", String(nextWalkTime));
     } else {
-      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem("nextWalkTime");
     }
   }, [nextWalkTime]);
 
-  // --- COUNTDOWN ---
+  // --- APP LOGIC ---
+
   const { startCountdown, remainingTime, status } = useCountdown({
     intervalHours,
     nextWalkTime,
     setNextWalkTime,
-  });
-
-  // --- WALK HISTORY ---
+  }); //Custom hook to manage the countdown logic for the next walk
 
   const { walks, addWalk, deleteWalk } = useWalks(); // Custom hook to manage walk history
 
-  //--- APP LOGIC ---
-
-  const handleWalkDone = () => {
-    setIsDurationSettingsOpen(true);
-  };
-
-  const completeWalk = (minutes: number) => {
-    addWalk(minutes);
-
-    startCountdown();
-
-    setIsDurationSettingsOpen(false);
-  };
+  const { isDurationSettingsOpen, handleWalkDone, completeWalk } =
+    useWalkCompletion({
+      startCountdown,
+      addWalk,
+    }); // Custom hook to manage the logic when a walk is completed
 
   //--- RENDER ---
   return (
@@ -81,17 +68,17 @@ function App() {
         }}
       >
         <h1>Dog Walk Timer</h1>
-
         <SettingsDrawer
           intervalHours={intervalHours}
           onChangeInterval={setIntervalHours}
         />
-
         {status === "active" && remainingTime !== null ? (
           <h2>{formatCountdownTime(remainingTime)}</h2>
-        ) : (
-          <h2>No active countdown</h2>
-        )}
+        ) : status === "expired" ? (
+          <h2>Time for a walk!</h2>
+        ) : status === "idle" ? (
+          <h2>Ready to start tracking walks!</h2>
+        ) : null}
 
         <h2>Walk history</h2>
         <div
@@ -128,7 +115,6 @@ function App() {
             <button onClick={() => completeWalk(45)}>45 minutes</button>
           </div>
         )}
-
         <button onClick={handleWalkDone}>Done walking</button>
       </div>
     </>
