@@ -9,8 +9,6 @@ import {
 } from "./utilities/FormatDateAndTime";
 import { useWalkCompletion } from "./hooks/useWalkCompletion";
 
-const STORAGE_KEY = "dog-walk-next"; //Key to store the next walk time in localStorage
-
 function App() {
   // --- STATES ---
 
@@ -22,7 +20,7 @@ function App() {
 
   //State for countdown logic
   const [nextWalkTime, setNextWalkTime] = useState<number | null>(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = localStorage.getItem("nextWalkTime");
     return stored ? Number(stored) : null;
   });
 
@@ -36,9 +34,9 @@ function App() {
   // Persistant storage of the next walk time
   useEffect(() => {
     if (nextWalkTime) {
-      localStorage.setItem(STORAGE_KEY, String(nextWalkTime));
+      localStorage.setItem("nextWalkTime", String(nextWalkTime));
     } else {
-      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem("nextWalkTime");
     }
   }, [nextWalkTime]);
 
