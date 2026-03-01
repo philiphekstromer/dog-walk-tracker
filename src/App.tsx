@@ -40,18 +40,16 @@ function App() {
     }
   }, [nextWalkTime]);
 
-  // --- COUNTDOWN ---
+  // --- APP LOGIC ---
+
   const { startCountdown, remainingTime, status } = useCountdown({
     intervalHours,
     nextWalkTime,
     setNextWalkTime,
-  });
-
-  // --- WALK HISTORY ---
+  }); //Custom hook to manage the countdown logic for the next walk
 
   const { walks, addWalk, deleteWalk } = useWalks(); // Custom hook to manage walk history
 
-  //--- APP LOGIC ---
   const { isDurationSettingsOpen, handleWalkDone, completeWalk } =
     useWalkCompletion({
       startCountdown,
