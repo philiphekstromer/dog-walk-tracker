@@ -11,6 +11,7 @@ import {
 const STORAGE_KEY = "dog-walk-next"; //Key to store the next walk time in localStorage
 
 function App() {
+  // --- STATES ---
   // State for walk history
   const [isDurationSettingsOpen, setIsDurationSettingsOpen] = useState(false);
 
@@ -27,7 +28,7 @@ function App() {
     return stored ? Number(stored) : null;
   });
 
-  // ----- STORAGE --------
+  // --- STORAGE ---
 
   // Persist storage of the interval between walks
   useEffect(() => {
@@ -43,20 +44,18 @@ function App() {
     }
   }, [nextWalkTime]);
 
-  // --------
-
-  // ----- COUNTDOWN -----
+  // --- COUNTDOWN ---
   const { startCountdown, remainingTime, status } = useCountdown({
     intervalHours,
     nextWalkTime,
     setNextWalkTime,
   });
 
-  // --------
-
-  // ----- WALK HISTORY -----
+  // --- WALK HISTORY ---
 
   const { walks, addWalk, deleteWalk } = useWalks(); // Custom hook to manage walk history
+
+  //--- APP LOGIC ---
 
   const handleWalkDone = () => {
     setIsDurationSettingsOpen(true);
@@ -70,6 +69,7 @@ function App() {
     setIsDurationSettingsOpen(false);
   };
 
+  //--- RENDER ---
   return (
     <>
       <div
