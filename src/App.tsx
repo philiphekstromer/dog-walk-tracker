@@ -7,13 +7,12 @@ import {
   formatWalkDate,
   formatCountdownTime,
 } from "./utilities/FormatDateAndTime";
+import { useWalkCompletion } from "./hooks/useWalkCompletion";
 
 const STORAGE_KEY = "dog-walk-next"; //Key to store the next walk time in localStorage
 
 function App() {
   // --- STATES ---
-  // State for walk history
-  const [isDurationSettingsOpen, setIsDurationSettingsOpen] = useState(false);
 
   // State for settings
   const [intervalHours, setIntervalHours] = useState<number>(() => {
@@ -22,7 +21,6 @@ function App() {
   });
 
   //State for countdown logic
-
   const [nextWalkTime, setNextWalkTime] = useState<number | null>(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored ? Number(stored) : null;
@@ -56,18 +54,11 @@ function App() {
   const { walks, addWalk, deleteWalk } = useWalks(); // Custom hook to manage walk history
 
   //--- APP LOGIC ---
-
-  const handleWalkDone = () => {
-    setIsDurationSettingsOpen(true);
-  };
-
-  const completeWalk = (minutes: number) => {
-    addWalk(minutes);
-
-    startCountdown();
-
-    setIsDurationSettingsOpen(false);
-  };
+  const { isDurationSettingsOpen, handleWalkDone, completeWalk } =
+    useWalkCompletion({
+      startCountdown,
+      addWalk,
+    }); // Custom hook to manage the logic when a walk is completed
 
   //--- RENDER ---
   return (
