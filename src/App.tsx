@@ -56,6 +56,13 @@ function App() {
       addWalk,
     }); // Custom hook to manage the logic when a walk is completed
 
+  // Set status to idle when there are no walks in history. This is to reset the app to the initial state after all walks have been deleted.
+  useEffect(() => {
+    if (walks.length === 0 && nextWalkTime !== null) {
+      setNextWalkTime(null);
+    }
+  }, [walks, nextWalkTime]);
+
   //--- RENDER ---
   return (
     <>
@@ -77,7 +84,7 @@ function App() {
         ) : status === "expired" ? (
           <h2>Time for a walk!</h2>
         ) : status === "idle" ? (
-          <h2>Ready to start tracking walks!</h2>
+          <h3>Ready to start tracking walks!</h3>
         ) : null}
 
         <h2>Walk history</h2>
@@ -115,6 +122,7 @@ function App() {
             <button onClick={() => completeWalk(45)}>45 minutes</button>
           </div>
         )}
+
         <button onClick={handleWalkDone}>Done walking</button>
       </div>
     </>
