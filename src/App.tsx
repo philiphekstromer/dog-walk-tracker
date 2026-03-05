@@ -8,7 +8,8 @@ import {
   formatCountdownTime,
 } from "./utilities/FormatDateAndTime";
 import { useWalkCompletion } from "./hooks/useWalkCompletion";
-import { BottomSheet, useBottomSheet } from "@plainsheet/react";
+import { useAppDrawer } from "./hooks/useAppDrawer";
+import { DurationInputDrawer } from "./components/DurationInputDrawer";
 
 function App() {
   // --- STATES ---
@@ -51,12 +52,6 @@ function App() {
 
   const { walks, addWalk, deleteWalk } = useWalks(); // Custom hook to manage walk history
 
-  const { isDurationSettingsOpen, handleWalkDone, completeWalk } =
-    useWalkCompletion({
-      startCountdown,
-      addWalk,
-    }); // Custom hook to manage the logic when a walk is completed
-
   // Set status to idle when there are no walks in history. This is to reset the app to the initial state after all walks have been deleted.
   useEffect(() => {
     if (walks.length === 0 && nextWalkTime !== null) {
@@ -65,27 +60,7 @@ function App() {
   }, [walks, nextWalkTime]);
 
   //bottom sheet configuration
-  const bottomSheet = useBottomSheet({
-    rootStyle: { backgroundColor: "transparent" },
-    backdropColor: "rgba(0, 0, 0, 0.4)",
-    containerStyle: {
-      padding: "1rem",
-    },
-    shouldShowHandle: false,
-  });
-
-  // Open/close bottom sheet when durationSettingsOpen state changes
-  useEffect(() => {
-    if (isDurationSettingsOpen) {
-      bottomSheet.open();
-      //wait for the bottom sheet to open before snapping to the desired position. This ensures that the snapTo function is called after the bottom sheet has been rendered and is ready to be manipulated.
-      setTimeout(() => {
-        bottomSheet.snapTo(0.6); // Snap to 50% of the screen height
-      }, 0);
-    } else {
-      bottomSheet.close();
-    }
-  }, [isDurationSettingsOpen, bottomSheet]);
+  const appDrawer = useAppDrawer();
 
   //--- RENDER ---
   return (
@@ -138,18 +113,10 @@ function App() {
             </div>
           ))}
         </div>
-        <BottomSheet {...bottomSheet.props}>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-          >
-            How long was the walk?
-            <button onClick={() => completeWalk(15)}>15 minutes</button>
-            <button onClick={() => completeWalk(30)}>30 minutes</button>
-            <button onClick={() => completeWalk(45)}>45 minutes</button>
-          </div>
-        </BottomSheet>
-
-        <button onClick={handleWalkDone}>Done walking</button>
+        <DurationInputDrawer
+          startCountdown={startCountdown}
+          addWalk={addWalk}
+        />
       </div>
     </>
   );
