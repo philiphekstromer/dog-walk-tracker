@@ -1,4 +1,5 @@
-import { BottomSheet, useBottomSheet } from "@plainsheet/react";
+import { useAppDrawer } from "../hooks/useAppDrawer";
+import { AppDrawer } from "./AppDrawer";
 
 type SettingsDrawerProps = {
   intervalHours: number;
@@ -9,26 +10,19 @@ export const SettingsDrawer = ({
   intervalHours,
   onChangeInterval,
 }: SettingsDrawerProps) => {
-  const bottomSheet = useBottomSheet({
-    rootStyle: { backgroundColor: "transparent" },
-    backdropColor: "rgba(0, 0, 0, 0.4)",
-    containerStyle: {
-      padding: "1rem",
-    },
-    shouldShowHandle: false,
-  });
+  const appDrawer = useAppDrawer();
 
   const handleButtonPress = () => {
-    bottomSheet.open();
+    appDrawer.open();
     //wait for the bottom sheet to open before snapping to the desired position. This ensures that the snapTo function is called after the bottom sheet has been rendered and is ready to be manipulated.
     setTimeout(() => {
-      bottomSheet.snapTo(0.7); // Snap to 50% of the screen height
+      appDrawer.snapTo(0.7); // Snap to 50% of the screen height
     }, 0);
   };
 
   return (
     <>
-      <BottomSheet {...bottomSheet.props}>
+      <AppDrawer drawer={appDrawer}>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           Set interval between walks:
           <button
@@ -48,7 +42,7 @@ export const SettingsDrawer = ({
             6
           </button>
         </div>
-      </BottomSheet>
+      </AppDrawer>
       <button onClick={handleButtonPress}>Settings</button>
     </>
   );
