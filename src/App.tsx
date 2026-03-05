@@ -64,6 +64,7 @@ function App() {
     }
   }, [walks, nextWalkTime]);
 
+  //bottom sheet configuration
   const bottomSheet = useBottomSheet({
     rootStyle: { backgroundColor: "transparent" },
     backdropColor: "rgba(0, 0, 0, 0.4)",
@@ -73,7 +74,7 @@ function App() {
     shouldShowHandle: false,
   });
 
-  // Open/close bottom sheet when duration settings state changes
+  // Open/close bottom sheet when durationSettingsOpen state changes
   useEffect(() => {
     if (isDurationSettingsOpen) {
       bottomSheet.open();
