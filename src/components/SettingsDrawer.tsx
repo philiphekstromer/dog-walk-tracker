@@ -12,6 +12,10 @@ export const SettingsDrawer = ({
   const bottomSheet = useBottomSheet({
     rootStyle: { backgroundColor: "transparent" },
     backdropColor: "rgba(0, 0, 0, 0.4)",
+    containerStyle: {
+      padding: "1rem",
+    },
+    shouldShowHandle: false,
   });
 
   const handleButtonPress = () => {
