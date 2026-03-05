@@ -29,25 +29,25 @@ export const SettingsDrawer = ({
   return (
     <>
       <BottomSheet {...bottomSheet.props}>
-        Set interval between walks:
-        <button
-          style={{
-            padding: "0.25rem 0.5rem",
-            backgroundColor: intervalHours === 4 ? "#1a1a1a" : "#ccc",
-          }}
-          onClick={() => onChangeInterval(4)}
-        >
-          4
-        </button>
-        <button
-          style={{
-            padding: "0.25rem 0.5rem",
-            backgroundColor: intervalHours === 6 ? "#1a1a1a" : "#ccc",
-          }}
-          onClick={() => onChangeInterval(6)}
-        >
-          6
-        </button>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          Set interval between walks:
+          <button
+            style={{
+              backgroundColor: intervalHours === 4 ? "#1a1a1a" : "#ccc",
+            }}
+            onClick={() => onChangeInterval(4)}
+          >
+            4
+          </button>
+          <button
+            style={{
+              backgroundColor: intervalHours === 6 ? "#1a1a1a" : "#ccc",
+            }}
+            onClick={() => onChangeInterval(6)}
+          >
+            6
+          </button>
+        </div>
       </BottomSheet>
       <button onClick={handleButtonPress}>Settings</button>
     </>
