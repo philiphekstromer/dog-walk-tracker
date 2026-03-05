@@ -8,6 +8,7 @@ import {
   formatCountdownTime,
 } from "./utilities/FormatDateAndTime";
 import { useWalkCompletion } from "./hooks/useWalkCompletion";
+import { BottomSheet, useBottomSheet } from "@plainsheet/react";
 
 function App() {
   // --- STATES ---
@@ -63,6 +64,28 @@ function App() {
     }
   }, [walks, nextWalkTime]);
 
+  const bottomSheet = useBottomSheet({
+    rootStyle: { backgroundColor: "transparent" },
+    backdropColor: "rgba(0, 0, 0, 0.4)",
+    containerStyle: {
+      padding: "1rem",
+    },
+    shouldShowHandle: false,
+  });
+
+  // Open/close bottom sheet when duration settings state changes
+  useEffect(() => {
+    if (isDurationSettingsOpen) {
+      bottomSheet.open();
+      //wait for the bottom sheet to open before snapping to the desired position. This ensures that the snapTo function is called after the bottom sheet has been rendered and is ready to be manipulated.
+      setTimeout(() => {
+        bottomSheet.snapTo(0.5); // Snap to 50% of the screen height
+      }, 0);
+    } else {
+      bottomSheet.close();
+    }
+  }, [isDurationSettingsOpen, bottomSheet]);
+
   //--- RENDER ---
   return (
     <>
@@ -114,14 +137,16 @@ function App() {
             </div>
           ))}
         </div>
-        {isDurationSettingsOpen && (
-          <div className="card">
+        <BottomSheet {...bottomSheet.props}>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+          >
             How long was the walk?
             <button onClick={() => completeWalk(15)}>15 minutes</button>
             <button onClick={() => completeWalk(30)}>30 minutes</button>
             <button onClick={() => completeWalk(45)}>45 minutes</button>
           </div>
-        )}
+        </BottomSheet>
 
         <button onClick={handleWalkDone}>Done walking</button>
       </div>
