@@ -1,4 +1,4 @@
-# Dog walk tracker
+av# Dog walk tracker
 
 A simple app to remind you when it's time to walk the dog. <a href="https://philiphekstromer.github.io/dog-walk-tracker">Try it out here</a>
 
@@ -18,8 +18,11 @@ React and ChatGPT/Github Copilot as coding partner
 
 Roadmap
 - [x] MVP app
+- [ ] MVP UI
 - [ ] Daily goal setting
 - [ ] Set hours where you dont walk the dog (i.e at night)
+- [ ] Desktop UI
+
 
 
 <!-- CONTACT -->
