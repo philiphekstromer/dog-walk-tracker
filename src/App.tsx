@@ -7,8 +7,6 @@ import {
   formatWalkDate,
   formatCountdownTime,
 } from "./utilities/FormatDateAndTime";
-import { useWalkCompletion } from "./hooks/useWalkCompletion";
-import { useAppDrawer } from "./hooks/useAppDrawer";
 import { DurationInputDrawer } from "./components/DurationInputDrawer";
 
 function App() {
@@ -58,9 +56,6 @@ function App() {
       setNextWalkTime(null);
     }
   }, [walks, nextWalkTime]);
-
-  //bottom sheet configuration
-  const appDrawer = useAppDrawer();
 
   //--- RENDER ---
   return (
