@@ -16,7 +16,7 @@ export const SettingsDrawer = ({
     appDrawer.open();
     //wait for the bottom sheet to open before snapping to the desired position. This ensures that the snapTo function is called after the bottom sheet has been rendered and is ready to be manipulated.
     setTimeout(() => {
-      appDrawer.snapTo(0.7); // Snap to 50% of the screen height
+      appDrawer.snapTo(0.7); // Snap to 70% of the screen height
     }, 0);
   };
 
