@@ -1,7 +1,5 @@
 import { useAppDrawer } from "../hooks/useAppDrawer";
-import { useWalkCompletion } from "../hooks/useWalkCompletion";
 import { AppDrawer } from "./AppDrawer";
-import { useEffect } from "react";
 
 type DurationInputDrawerProps = {
   startCountdown: () => void;
@@ -14,36 +12,34 @@ export const DurationInputDrawer = ({
 }: DurationInputDrawerProps) => {
   const appDrawer = useAppDrawer();
 
-  const { isDurationSettingsOpen, handleWalkDone, completeWalk } =
-    useWalkCompletion({
-      startCountdown,
-      addWalk,
-    }); // Custom hook to manage the logic when a walk is completed
+  //function that is called when the user has selected walk duration. It adds the walk to history, starts the countdown for the next walk and closes the app drawer.
+  const handleCompleteWalk = (minutes: number) => {
+    addWalk(minutes);
 
-  // Open/close bottom sheet when durationSettingsOpen state changes
-  useEffect(() => {
-    if (isDurationSettingsOpen) {
-      appDrawer.open();
-      //wait for the bottom sheet to open before snapping to the desired position. This ensures that the snapTo function is called after the bottom sheet has been rendered and is ready to be manipulated.
-      setTimeout(() => {
-        appDrawer.snapTo(0.6); // Snap to 50% of the screen height
-      }, 0);
-    } else {
-      appDrawer.close();
-    }
-  }, [isDurationSettingsOpen, appDrawer]);
+    startCountdown();
+
+    appDrawer.close();
+  };
+
+  //function to open the app drawer and snap it to the desired position when the user clicks the walk done button.
+  const handleOpenDurationInput = () => {
+    appDrawer.open();
+    setTimeout(() => {
+      appDrawer.snapTo(0.6); //Snap to 60% of the screen height
+    }, 0);
+  };
 
   return (
     <>
       <AppDrawer drawer={appDrawer}>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           How long was the walk?
-          <button onClick={() => completeWalk(15)}>15 minutes</button>
-          <button onClick={() => completeWalk(30)}>30 minutes</button>
-          <button onClick={() => completeWalk(45)}>45 minutes</button>
+          <button onClick={() => handleCompleteWalk(15)}>15 minutes</button>
+          <button onClick={() => handleCompleteWalk(30)}>30 minutes</button>
+          <button onClick={() => handleCompleteWalk(45)}>45 minutes</button>
         </div>
       </AppDrawer>
-      <button onClick={handleWalkDone}>Walk done</button>
+      <button onClick={handleOpenDurationInput}>Walk done</button>
     </>
   );
 };
