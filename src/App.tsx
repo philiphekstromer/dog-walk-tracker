@@ -7,7 +7,7 @@ import {
   formatWalkDate,
   formatCountdownTime,
 } from "./utilities/FormatDateAndTime";
-import { useWalkCompletion } from "./hooks/useWalkCompletion";
+import { DurationInputDrawer } from "./components/DurationInputDrawer";
 
 function App() {
   // --- STATES ---
@@ -49,12 +49,6 @@ function App() {
   }); //Custom hook to manage the countdown logic for the next walk
 
   const { walks, addWalk, deleteWalk } = useWalks(); // Custom hook to manage walk history
-
-  const { isDurationSettingsOpen, handleWalkDone, completeWalk } =
-    useWalkCompletion({
-      startCountdown,
-      addWalk,
-    }); // Custom hook to manage the logic when a walk is completed
 
   // Set status to idle when there are no walks in history. This is to reset the app to the initial state after all walks have been deleted.
   useEffect(() => {
@@ -114,16 +108,10 @@ function App() {
             </div>
           ))}
         </div>
-        {isDurationSettingsOpen && (
-          <div className="card">
-            How long was the walk?
-            <button onClick={() => completeWalk(15)}>15 minutes</button>
-            <button onClick={() => completeWalk(30)}>30 minutes</button>
-            <button onClick={() => completeWalk(45)}>45 minutes</button>
-          </div>
-        )}
-
-        <button onClick={handleWalkDone}>Done walking</button>
+        <DurationInputDrawer
+          startCountdown={startCountdown}
+          addWalk={addWalk}
+        />
       </div>
     </>
   );
