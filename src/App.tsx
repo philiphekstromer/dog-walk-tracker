@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { SettingsDrawer } from "./components/SettingsDrawer";
+import { ReleaseNotesDrawer } from "./components/ReleaseNotesDrawer";
 import { useWalks } from "./hooks/useWalks";
 import { useCountdown } from "./hooks/useCountdown";
 import {
@@ -60,6 +61,22 @@ function App() {
   //--- RENDER ---
   return (
     <>
+      <ReleaseNotesDrawer
+        version="0.2.0"
+        content={
+          <>
+            <ul>
+              <li>
+                Added a drawer for settings and walk duration. It's the drawer
+                you're seeing now!
+              </li>
+              <li>
+                Made a better Toggle Button for setting time between walks.
+              </li>
+            </ul>
+          </>
+        }
+      />
       <div
         style={{
           display: "flex",
