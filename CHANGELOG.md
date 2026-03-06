@@ -1,3 +1,19 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+## [0.2.0] - 2026-03-06
+
+### 🚀 Features
+
+- Add Appdrawer component
+
+### 🚜 Refactor
+
+- Add ToggleButtonGroup component and use it in SettingsDrawer
+
+### 📚 Documentation
+
+- Changelog 
 ## [0.1.0] - 2026-03-05
 
 ### 🚀 Features
@@ -13,7 +29,7 @@
 - Add history cards and fix layout
 - Reduce h1 size
 - Fix layout
-- _(useWalks)_ Prepend new walk
+- *(useWalks)* Prepend new walk
 - Set status to idle when all walks are deleted
 
 ### 💼 Other
@@ -28,3 +44,15 @@
 
 - Fix link to app
 - Update TODO.md
+
+### ⚙️ Miscellaneous Tasks
+
+- Comment
+- Restructure file and add comments
+- Add useWalks hook
+- Fix base
+- Add gh-pages
+- Fix homepage setting
+- Remove unused css
+- Remove unused css
+- Remove unused css
