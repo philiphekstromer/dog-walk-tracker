@@ -18,8 +18,11 @@ React and ChatGPT/Github Copilot as coding partner
 
 Roadmap
 - [x] MVP app
+- [ ] MVP UI
 - [ ] Daily goal setting
 - [ ] Set hours where you dont walk the dog (i.e at night)
+- [ ] Desktop UI
+
 
 
 <!-- CONTACT -->
