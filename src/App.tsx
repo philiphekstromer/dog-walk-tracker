@@ -62,6 +62,7 @@ function App() {
   return (
     <>
       <ReleaseNotesDrawer
+        snapHeightPercent={0.4}
         version="0.2.0"
         content={
           <>

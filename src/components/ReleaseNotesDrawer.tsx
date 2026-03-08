@@ -3,11 +3,13 @@ import { AppDrawer } from "./AppDrawer";
 import { useEffect } from "react";
 
 type ReleaseNotesDrawerProps = {
+  snapHeightPercent: number;
   content: React.ReactNode;
   version: string;
 };
 
 export const ReleaseNotesDrawer = ({
+  snapHeightPercent,
   content,
   version,
 }: ReleaseNotesDrawerProps) => {
@@ -19,11 +21,11 @@ export const ReleaseNotesDrawer = ({
     if (lastSeenVersion !== version) {
       setTimeout(() => {
         appDrawer.open();
-        appDrawer.snapTo(0.4);
+        appDrawer.snapTo(snapHeightPercent);
         localStorage.setItem("lastSeenVersion", version);
       }, 500);
     }
-  }, [appDrawer, version]);
+  }, [appDrawer, version, snapHeightPercent]);
 
   return (
     <AppDrawer drawer={appDrawer}>
