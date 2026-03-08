@@ -7,3 +7,9 @@
   border: 1px solid #ccc;
   border-radius: 0.5rem;
 }
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}

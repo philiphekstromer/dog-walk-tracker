@@ -60,14 +60,7 @@ function App() {
   //--- RENDER ---
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          textAlign: "center",
-          height: "90dvh",
-        }}
-      >
+      <div className={styles.mainContainer}>
         <h1>Dog Walk Timer</h1>
         <SettingsDrawer
           intervalHours={intervalHours}
