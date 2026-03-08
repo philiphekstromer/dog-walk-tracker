@@ -93,7 +93,7 @@ function App() {
           }}
         >
           {walks.map((walk) => (
-            <div key={walk.id} className="history-card">
+            <div key={walk.id} className={styles.historyCard}>
               {walk.minutes} min {formatWalkDate(walk.createdAt)}
               <button
                 style={{
