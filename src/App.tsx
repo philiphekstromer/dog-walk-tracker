@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import { SettingsDrawer } from "./components/SettingsDrawer";
 import { useWalks } from "./hooks/useWalks";
 import { useCountdown } from "./hooks/useCountdown";
