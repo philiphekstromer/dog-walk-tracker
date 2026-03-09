@@ -75,16 +75,7 @@ function App() {
         ) : null}
 
         <h2>Walk history</h2>
-        <div
-          style={{
-            display: "flex",
-            flex: 1,
-            overflowY: "auto",
-            flexDirection: "column",
-            gap: "0.5rem",
-            alignItems: "stretch",
-          }}
-        >
+        <div className={styles.historyList}>
           {walks.map((walk) => (
             <div key={walk.id} className={styles.historyCard}>
               {walk.minutes} min {formatWalkDate(walk.createdAt)}
