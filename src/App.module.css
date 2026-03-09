@@ -15,3 +15,12 @@
   height: 100%;
   gap: 1rem;
 }
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  gap: 0.5rem;
+  min-height: 0;
+}
