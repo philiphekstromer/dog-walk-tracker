@@ -1,5 +1,6 @@
 import { useAppDrawer } from "../hooks/useAppDrawer";
 import { AppDrawer } from "./AppDrawer";
+import styles from "./DurationInputDrawer.module.css";
 
 type DurationInputDrawerProps = {
   startCountdown: () => void;
@@ -39,7 +40,12 @@ export const DurationInputDrawer = ({
           <button onClick={() => handleCompleteWalk(45)}>45 minutes</button>
         </div>
       </AppDrawer>
-      <button onClick={handleOpenDurationInput}>Walk done</button>
+      <button
+        className={styles.floatingActionButton}
+        onClick={handleOpenDurationInput}
+      >
+        Done walking
+      </button>
     </>
   );
 };
