@@ -1,0 +1,8 @@
+.floatingActionButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 1rem 1rem;
+  z-index: 1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
