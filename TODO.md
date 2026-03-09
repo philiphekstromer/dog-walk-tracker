@@ -2,25 +2,24 @@
 
 This is the todo for the dog walk tracker app
 
-## DOING
+## NEXT RELEASE
 
-Currently in progress
-
-- [ ] Destructure code and add custom hooks
-- [ ] Add bottom sheet
-
+- [ ] Add icon lib
+- [ ] Add icon button to history card
+- [ ] Use icon button instead of settings button
+- [x] Make bottom CTA a FAB
+- [x] Fix body and #root css
 
 # BACKLOG
 
-- [ ] Add icon lib
-- [ ] Put CTA on top of history list
-- [ ] Fix height so there is no scrolling
-- [ ] Remove scrollbar from history list
 - [ ] Create light and dark theme
-- [ ] Add Toggle button component 
-
+- [ ] Add Button component
+- [ ] Add Card component
 
 # DONE
 
 - [x] MVP app
 - [x] Publish to GH pages
+- [x] Destructure code and add custom hooks
+- [x] Add bottom sheet
+- [x] Add Toggle button component
