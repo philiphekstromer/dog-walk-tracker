@@ -21,6 +21,7 @@
   overflow-y: auto;
   gap: 0.5rem;
   min-height: 0;
+  padding-bottom: 3rem;
 }
 
 .dangerButton {
