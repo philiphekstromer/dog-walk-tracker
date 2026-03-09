@@ -1,6 +1,6 @@
 import { useAppDrawer } from "../hooks/useAppDrawer";
 import { AppDrawer } from "./AppDrawer";
-import ToggleButton from "./ToggleButtonGroup";
+import ToggleButtonGroup from "./ToggleButtonGroup";
 
 type SettingsDrawerProps = {
   intervalHours: number;
@@ -26,7 +26,7 @@ export const SettingsDrawer = ({
       <AppDrawer drawer={appDrawer}>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           Set interval between walks:
-          <ToggleButton
+          <ToggleButtonGroup
             activeValue={intervalHours}
             onSelect={onChangeInterval}
             options={[4, 6, 8]} // You can customize these options as needed
