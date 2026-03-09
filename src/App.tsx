@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import { SettingsDrawer } from "./components/SettingsDrawer";
 import { ReleaseNotesDrawer } from "./components/ReleaseNotesDrawer";
 import { useWalks } from "./hooks/useWalks";
@@ -78,14 +78,7 @@ function App() {
           </>
         }
       />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          textAlign: "center",
-          height: "90dvh",
-        }}
-      >
+      <div className={styles.mainContainer}>
         <h1>Dog Walk Timer</h1>
         <SettingsDrawer
           intervalHours={intervalHours}
@@ -100,25 +93,12 @@ function App() {
         ) : null}
 
         <h2>Walk history</h2>
-        <div
-          style={{
-            display: "flex",
-            flex: 1,
-            overflowY: "auto",
-            flexDirection: "column",
-            gap: "0.5rem",
-            alignItems: "stretch",
-          }}
-        >
+        <div className={styles.historyList}>
           {walks.map((walk) => (
-            <div key={walk.id} className="history-card">
+            <div key={walk.id} className={styles.historyCard}>
               {walk.minutes} min {formatWalkDate(walk.createdAt)}
               <button
-                style={{
-                  background: "red",
-                  color: "white",
-                  padding: "0.25rem",
-                }}
+                className={styles.dangerButton}
                 onClick={() => deleteWalk(walk.id)}
               >
                 Delete
