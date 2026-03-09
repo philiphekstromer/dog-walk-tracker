@@ -80,11 +80,7 @@ function App() {
             <div key={walk.id} className={styles.historyCard}>
               {walk.minutes} min {formatWalkDate(walk.createdAt)}
               <button
-                style={{
-                  background: "red",
-                  color: "white",
-                  padding: "0.25rem",
-                }}
+                className={styles.dangerButton}
                 onClick={() => deleteWalk(walk.id)}
               >
                 Delete
