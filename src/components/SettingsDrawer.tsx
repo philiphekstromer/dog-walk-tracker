@@ -1,6 +1,8 @@
 import { useAppDrawer } from "../hooks/useAppDrawer";
 import { AppDrawer } from "./AppDrawer";
+import Button from "./Button";
 import ToggleButtonGroup from "./ToggleButtonGroup";
+import { Settings } from "lucide-react";
 
 type SettingsDrawerProps = {
   intervalHours: number;
@@ -34,7 +36,11 @@ export const SettingsDrawer = ({
           />
         </div>
       </AppDrawer>
-      <button onClick={handleButtonPress}>Settings</button>
+      <Button
+        variant="icon"
+        icon={Settings}
+        onClick={handleButtonPress}
+      ></Button>
     </>
   );
 };
