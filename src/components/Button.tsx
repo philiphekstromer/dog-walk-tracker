@@ -9,12 +9,12 @@ interface ButtonProps {
   variant: "primary" | "secondary" | "icon" | "fab";
 }
 
-const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   icon: IconComponent,
   onClick,
   children,
   variant = "primary",
-}) => (
+}: ButtonProps) => (
   <button
     className={clsx(
       styles.button,
@@ -29,5 +29,3 @@ const Button: React.FC<ButtonProps> = ({
     {children}
   </button>
 );
-
-export default Button;
