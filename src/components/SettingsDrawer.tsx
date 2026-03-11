@@ -1,5 +1,6 @@
 import { useAppDrawer } from "../hooks/useAppDrawer";
 import { AppDrawer } from "./AppDrawer";
+import { Button } from "./Button";
 import ToggleButtonGroup from "./ToggleButtonGroup";
 
 type SettingsDrawerProps = {
@@ -34,7 +35,9 @@ export const SettingsDrawer = ({
           />
         </div>
       </AppDrawer>
-      <button onClick={handleButtonPress}>Settings</button>
+      <Button variant="primary" onClick={handleButtonPress}>
+        Settings
+      </Button>
     </>
   );
 };
