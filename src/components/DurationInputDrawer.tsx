@@ -1,5 +1,6 @@
 import { useAppDrawer } from "../hooks/useAppDrawer";
 import { AppDrawer } from "./AppDrawer";
+import Button from "./Button";
 
 type DurationInputDrawerProps = {
   startCountdown: () => void;
@@ -39,7 +40,9 @@ export const DurationInputDrawer = ({
           <button onClick={() => handleCompleteWalk(45)}>45 minutes</button>
         </div>
       </AppDrawer>
-      <button onClick={handleOpenDurationInput}>Walk done</button>
+      <Button variant="primary" onClick={handleOpenDurationInput}>
+        Walk done
+      </Button>
     </>
   );
 };
