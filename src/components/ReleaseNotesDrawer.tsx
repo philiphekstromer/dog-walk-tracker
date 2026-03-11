@@ -1,6 +1,7 @@
 import { useAppDrawer } from "../hooks/useAppDrawer";
 import { AppDrawer } from "./AppDrawer";
 import { useEffect } from "react";
+import { Button } from "./Button";
 
 type ReleaseNotesDrawerProps = {
   snapHeightPercent: number;
@@ -45,7 +46,9 @@ export const ReleaseNotesDrawer = ({
           <div style={{ textAlign: "left", fontSize: "0.95rem" }}>
             {content}
           </div>
-          <button onClick={() => appDrawer.close()}>Got it!</button>
+          <Button variant="primary" onClick={() => appDrawer.close()}>
+            Got it!
+          </Button>
         </div>
       </div>
     </AppDrawer>
