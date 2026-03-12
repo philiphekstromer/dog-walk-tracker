@@ -6,6 +6,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   display: inline-flex;
+  gap: 0.5rem;
   align-items: center;
   justify-content: center;
   color: white;
