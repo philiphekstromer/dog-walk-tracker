@@ -1,5 +1,6 @@
 import { useAppDrawer } from "../hooks/useAppDrawer";
 import { AppDrawer } from "./AppDrawer";
+import { Button } from "./Button";
 
 type DurationInputDrawerProps = {
   startCountdown: () => void;
@@ -34,12 +35,20 @@ export const DurationInputDrawer = ({
       <AppDrawer drawer={appDrawer}>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           How long was the walk?
-          <button onClick={() => handleCompleteWalk(15)}>15 minutes</button>
-          <button onClick={() => handleCompleteWalk(30)}>30 minutes</button>
-          <button onClick={() => handleCompleteWalk(45)}>45 minutes</button>
+          <Button variant="primary" onClick={() => handleCompleteWalk(15)}>
+            15 minutes
+          </Button>
+          <Button variant="primary" onClick={() => handleCompleteWalk(30)}>
+            30 minutes
+          </Button>
+          <Button variant="primary" onClick={() => handleCompleteWalk(45)}>
+            45 minutes
+          </Button>
         </div>
       </AppDrawer>
-      <button onClick={handleOpenDurationInput}>Walk done</button>
+      <Button variant="primary" onClick={handleOpenDurationInput}>
+        Walk done
+      </Button>
     </>
   );
 };
