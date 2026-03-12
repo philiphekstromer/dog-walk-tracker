@@ -46,7 +46,7 @@ export const DurationInputDrawer = ({
           </Button>
         </div>
       </AppDrawer>
-      <Button variant="primary" onClick={handleOpenDurationInput}>
+      <Button variant="fab" onClick={handleOpenDurationInput}>
         Walk done
       </Button>
     </>
