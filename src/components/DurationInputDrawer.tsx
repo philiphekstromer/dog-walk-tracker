@@ -1,6 +1,7 @@
 import { useAppDrawer } from "../hooks/useAppDrawer";
 import { AppDrawer } from "./AppDrawer";
 import { Button } from "./Button";
+import { Plus } from "lucide-react";
 
 type DurationInputDrawerProps = {
   startCountdown: () => void;
@@ -46,8 +47,8 @@ export const DurationInputDrawer = ({
           </Button>
         </div>
       </AppDrawer>
-      <Button variant="primary" onClick={handleOpenDurationInput}>
-        Walk done
+      <Button variant="fab" icon={Plus} onClick={handleOpenDurationInput}>
+        Add walk
       </Button>
     </>
   );
