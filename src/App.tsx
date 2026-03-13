@@ -11,6 +11,7 @@ import {
 import { DurationInputDrawer } from "./components/DurationInputDrawer";
 import { Button } from "./components/Button";
 import { Trash2 } from "lucide-react";
+import { Header } from "./components/Header";
 
 function App() {
   // --- STATES ---
@@ -81,8 +82,7 @@ function App() {
         }
       />
       <div className={styles.mainContainer}>
-        <h1>Dog Walk Timer</h1>
-        <SettingsDrawer
+        <Header
           intervalHours={intervalHours}
           onChangeInterval={setIntervalHours}
         />
