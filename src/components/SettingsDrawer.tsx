@@ -1,3 +1,4 @@
+import { Settings } from "lucide-react";
 import { useAppDrawer } from "../hooks/useAppDrawer";
 import { AppDrawer } from "./AppDrawer";
 import { Button } from "./Button";
@@ -35,9 +36,11 @@ export const SettingsDrawer = ({
           />
         </div>
       </AppDrawer>
-      <Button variant="primary" onClick={handleButtonPress}>
-        Settings
-      </Button>
+      <Button
+        variant="icon"
+        icon={Settings}
+        onClick={handleButtonPress}
+      ></Button>
     </>
   );
 };
