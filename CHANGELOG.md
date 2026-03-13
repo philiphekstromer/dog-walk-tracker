@@ -1,6 +1,34 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.3.0] - 2026-03-13
+
+### 🚀 Features
+
+- Add release drawer 
+- Make the main action button a FAB
+- *(SettingsDrawer)* Use icon button for settings
+- Change delete action trigger to icon button
+
+### 🐛 Bug Fixes
+
+- *(SettingsDrawer)* Change import to correct name
+- Reduce heading sizes
+- *(header)* Change flex spacing
+
+### 🚜 Refactor
+
+- Remove-inline in App.tsx 
+- Replace html buttons with button component
+- Add Header component
+
+### 📚 Documentation
+
+- *(todo)* Update todo for v.0.3.0
+
+### ⚙️ Miscellaneous Tasks
+
+- *(release)* Update changelog for v.0.2.0
 ## [0.2.0] - 2026-03-06
 
 ### 🚀 Features
