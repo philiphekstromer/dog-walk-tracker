@@ -9,6 +9,8 @@ import {
   formatCountdownTime,
 } from "./utilities/FormatDateAndTime";
 import { DurationInputDrawer } from "./components/DurationInputDrawer";
+import { Button } from "./components/Button";
+import { Trash2 } from "lucide-react";
 
 function App() {
   // --- STATES ---
@@ -97,12 +99,11 @@ function App() {
           {walks.map((walk) => (
             <div key={walk.id} className={styles.historyCard}>
               {walk.minutes} min {formatWalkDate(walk.createdAt)}
-              <button
-                className={styles.dangerButton}
+              <Button
+                variant="icon"
+                icon={Trash2}
                 onClick={() => deleteWalk(walk.id)}
-              >
-                Delete
-              </button>
+              ></Button>
             </div>
           ))}
         </div>
