@@ -65,17 +65,19 @@ function App() {
     <>
       <ReleaseNotesDrawer
         snapHeightPercent={0.4}
-        version="0.2.0"
+        version="0.3.0"
         content={
           <>
             <ul>
               <li>
-                Added a drawer for settings and walk duration. It's the drawer
-                you're seeing now!
+                Introduced icons for deleting walks from history and for
+                settings in the header
               </li>
               <li>
-                Made a better Toggle Button for setting time between walks.
+                Made the app more responsive and mobile-friendly with a new
+                layout and design
               </li>
+              <li>Made the main button a floating action button</li>
             </ul>
           </>
         }
