@@ -11,7 +11,9 @@ This is the todo for the dog walk tracker app
 - [ ] Design UI 
 - [ ] Add Card component
 - [ ] Add theme settings 
-- [ ] reduce max width 
+- [ ] Reduce max width 
+- [ ] Add progress component 
+
 
 # DONE
 
