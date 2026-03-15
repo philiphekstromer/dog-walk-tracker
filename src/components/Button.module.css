@@ -19,17 +19,17 @@ button:focus-visible {
 }
 
 .primary {
-  background-color: #108c05;
+  background-color: var(--color-button-primary);
 }
 .primary:hover {
-  background-color: #0e7a04;
+  background-color: var(--color-button-primary-hover);
 }
 
 .secondary {
-  background-color: #3d9136;
+  background-color: var(--color-button-secondary);
 }
 .secondary:hover {
-  background-color: #378530;
+  background-color: var(--color-button-secondary-hover);
 }
 
 .icon {
@@ -41,7 +41,7 @@ button:focus-visible {
 }
 
 .fab {
-  background-color: #108c05;
+  background-color: var(--color-button-primary);
   padding: 0.75rem;
   position: fixed;
   bottom: 1rem;
