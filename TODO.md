@@ -13,7 +13,8 @@ This is the todo for the dog walk tracker app
 - [ ] Add theme settings 
 - [ ] Reduce max width 
 - [ ] Add progress component 
-
+- [ ] Edit walk from history list 
+- [ ] Editable time when adding walk, defaults to current time. Useful if you forget to add
 
 # DONE
 
