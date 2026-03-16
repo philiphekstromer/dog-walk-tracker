@@ -90,16 +90,19 @@ function App() {
           onChangeInterval={setIntervalHours}
         />
         {status === "active" && remainingTime !== null ? (
-          <h2>{formatCountdownTime(remainingTime)}</h2>
+          <div>
+            <h2>{formatCountdownTime(remainingTime)}</h2>
+            <Progress
+              value={remainingTime !== null ? remainingTime : 0}
+              max={intervalMilliseconds}
+            />
+          </div>
         ) : status === "expired" ? (
           <h2>Time for a walk!</h2>
         ) : status === "idle" ? (
           <h3>Ready to start tracking walks!</h3>
         ) : null}
-        <Progress
-          value={remainingTime !== null ? remainingTime : 0}
-          max={intervalMilliseconds}
-        />
+
         <h2>Walk history</h2>
         <div className={styles.historyList}>
           {walks.map((walk) => (
