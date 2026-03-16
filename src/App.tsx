@@ -11,6 +11,7 @@ import { DurationInputDrawer } from "./components/DurationInputDrawer";
 import { Button } from "./components/Button";
 import { Trash2 } from "lucide-react";
 import { Header } from "./components/Header";
+import { Progress } from "./components/Progress";
 
 function App() {
   // --- STATES ---
@@ -45,11 +46,12 @@ function App() {
 
   // --- APP LOGIC ---
 
-  const { startCountdown, remainingTime, status } = useCountdown({
-    intervalHours,
-    nextWalkTime,
-    setNextWalkTime,
-  }); //Custom hook to manage the countdown logic for the next walk
+  const { startCountdown, remainingTime, status, intervalMilliseconds } =
+    useCountdown({
+      intervalHours,
+      nextWalkTime,
+      setNextWalkTime,
+    }); //Custom hook to manage the countdown logic for the next walk
 
   const { walks, addWalk, deleteWalk } = useWalks(); // Custom hook to manage walk history
 
@@ -94,7 +96,10 @@ function App() {
         ) : status === "idle" ? (
           <h3>Ready to start tracking walks!</h3>
         ) : null}
-
+        <Progress
+          value={remainingTime !== null ? remainingTime : 0}
+          max={intervalMilliseconds}
+        />
         <h2>Walk history</h2>
         <div className={styles.historyList}>
           {walks.map((walk) => (
