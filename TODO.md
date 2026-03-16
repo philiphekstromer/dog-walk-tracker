@@ -4,17 +4,17 @@ This is the todo for the dog walk tracker app
 
 ## NEXT RELEASE
 
-- [ ] Add icon lib
-- [ ] Add icon button to history card
-- [ ] Use icon button instead of settings button
-- [x] Make bottom CTA a FAB
-- [x] Fix body and #root css
+- [ ] Create light and dark theme
+- [ ] Add Card component
+- [ ] Add theme switch to settings
+- [ ] Add progress component
 
 # BACKLOG
 
-- [ ] Create light and dark theme
-- [ ] Add Button component
-- [ ] Add Card component
+- [ ] Design UI
+- [ ] Reduce max width
+- [ ] Edit walk from history list
+- [ ] Editable time when adding walk, defaults to current time. Useful if you forget to add
 
 # DONE
 
@@ -23,3 +23,9 @@ This is the todo for the dog walk tracker app
 - [x] Destructure code and add custom hooks
 - [x] Add bottom sheet
 - [x] Add Toggle button component
+- [x] Add icon lib
+- [x] Add icon button to history card
+- [x] Use icon button instead of settings button
+- [x] Make bottom CTA a FAB
+- [x] Fix body and #root css
+- [x] Add Button component
