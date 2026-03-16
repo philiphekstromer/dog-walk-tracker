@@ -35,12 +35,12 @@ export const useCountdown = ({
     status = "expired";
   }
 
-  const TIME_BETWEEN_WALKS = intervalHours * 60 * 60 * 1000; // Convert hours to milliseconds
+  const intervalMilliseconds = intervalHours * 60 * 60 * 1000; // Convert hours to milliseconds
 
   const startCountdown = () => {
-    const nextWalk = Date.now() + TIME_BETWEEN_WALKS;
+    const nextWalk = Date.now() + intervalMilliseconds; // Set the next walk time based on the current time and the interval
     setNextWalkTime(nextWalk);
   };
 
-  return { startCountdown, remainingTime, status };
+  return { startCountdown, remainingTime, status, intervalMilliseconds };
 };
