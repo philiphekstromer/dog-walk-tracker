@@ -13,6 +13,10 @@
   /*Background variables*/
   --color-background: light-dark(#ffffff, #121212);
 
+  /*Link variables*/
+  --color-link: light-dark(#646cff, #646cff);
+  --color-link-hover: light-dark(#535bf2, #535bf2);
+
   /*Button variables*/
   --color-button-primary: light-dark(var(--green-500), var(--green-500));
   --color-button-primary-hover: light-dark(var(--green-600), var(--green-600));
