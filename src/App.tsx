@@ -11,6 +11,7 @@ import { DurationInputDrawer } from "./components/DurationInputDrawer";
 import { Button } from "./components/Button";
 import { Trash2 } from "lucide-react";
 import { Header } from "./components/Header";
+import { Card } from "./components/Card";
 
 function App() {
   // --- STATES ---
@@ -98,14 +99,14 @@ function App() {
         <h2>Walk history</h2>
         <div className={styles.historyList}>
           {walks.map((walk) => (
-            <div key={walk.id} className={styles.historyCard}>
+            <Card key={walk.id}>
               {walk.minutes} min {formatWalkDate(walk.createdAt)}
               <Button
                 variant="icon"
                 icon={Trash2}
                 onClick={() => deleteWalk(walk.id)}
               ></Button>
-            </div>
+            </Card>
           ))}
         </div>
         <DurationInputDrawer
