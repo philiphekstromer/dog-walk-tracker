@@ -1,6 +1,30 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.4.0] - 2026-03-21
+
+### 🚀 Features
+
+- Add Progress bar
+- Select time when walk ended 
+
+### 🐛 Bug Fixes
+
+- *(app)* Remove unused import
+
+### 🚜 Refactor
+
+- *(theme)* Add css variables
+- Add Card component
+
+### 📚 Documentation
+
+- *(todo)* Update todo
+
+### ⚙️ Miscellaneous Tasks
+
+- *(release)* Update changelog for v0.3.0
+- Update in app release notes
 ## [0.3.0] - 2026-03-13
 
 ### 🚀 Features

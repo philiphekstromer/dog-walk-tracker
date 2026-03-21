@@ -68,19 +68,18 @@ function App() {
     <>
       <ReleaseNotesDrawer
         snapHeightPercent={0.4}
-        version="0.3.0"
+        version="0.4.0"
         content={
           <>
             <ul>
               <li>
-                Introduced icons for deleting walks from history and for
-                settings in the header
+                You can now pick the time of your walk in the new time picker.
+                This allows you to track past walks that you forgot to log.
               </li>
               <li>
-                Made the app more responsive and mobile-friendly with a new
-                layout and design
+                Added a progress bar to visualize the time remaining until the
+                next walk.
               </li>
-              <li>Made the main button a floating action button</li>
             </ul>
           </>
         }
