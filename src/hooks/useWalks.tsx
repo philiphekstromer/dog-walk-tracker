@@ -20,11 +20,11 @@ export const useWalks = () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(walks));
   }, [walks]);
 
-  const addWalk = (minutes: number) => {
+  const addWalk = (minutes: number, timestamp: number) => {
     const newWalk: Walk = {
       id: crypto.randomUUID(),
       minutes,
-      createdAt: Date.now(),
+      createdAt: timestamp,
     };
 
     setWalks((prev) => [newWalk, ...prev]);

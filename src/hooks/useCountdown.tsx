@@ -37,8 +37,8 @@ export const useCountdown = ({
 
   const intervalMilliseconds = intervalHours * 60 * 60 * 1000; // Convert hours to milliseconds
 
-  const startCountdown = () => {
-    const nextWalk = Date.now() + intervalMilliseconds; // Set the next walk time based on the current time and the interval
+  const startCountdown = (timestamp: number) => {
+    const nextWalk = timestamp + intervalMilliseconds; // Set the next walk time based on the current time and the interval
     setNextWalkTime(nextWalk);
   };
 
