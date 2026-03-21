@@ -26,9 +26,9 @@ export const DurationInputDrawer = ({
   //State to hold the selected time for the walk. It is initialized to the current time in 'HH:mm' format.
   const [selectedTime, setSelectedTime] = useState(getCurrentTimeString());
 
-  /**
-   * Tar en tidssträng (t.ex. "14:30") och skapar en timestamp för IDAG.
-   */
+  //State to hold error messages to display to the user
+  const [error, setError] = useState<string | null>(null);
+
   const getTimestampFromTimeString = (timeString: string): number => {
     // Parse the time string to get hours and minutes
     const [hoursRaw, minutesRaw] = timeString.split(":");
@@ -47,23 +47,32 @@ export const DurationInputDrawer = ({
 
     //Validate the created date object
     if (!isValid(dateObject)) {
-      throw new Error("Ogiltigt tidsformat. Förväntat format: HH:mm");
+      throw new Error("Wrong time format. Expected: HH:mm");
+    }
+
+    if (dateObject.getTime() > Date.now()) {
+      // If the selected time is in the future, throw an error
+      throw new Error(
+        "Are you walking your dog in the future? Pick the present time or some time before that!",
+      );
     }
 
     //return the timestamp (milliseconds since epoch) for the created date object
     return getTime(dateObject);
   };
 
-  // Get the timestamp for the walk based on the selected time string
-  const walkTimestamp = getTimestampFromTimeString(selectedTime);
-
   //function that is called when the user has selected walk duration. It adds the walk to history, starts the countdown for the next walk and closes the app drawer.
   const handleCompleteWalk = (minutes: number) => {
-    addWalk(minutes, walkTimestamp);
-
-    startCountdown();
-
-    appDrawer.close();
+    try {
+      setError(null);
+      const walkTimestamp = getTimestampFromTimeString(selectedTime);
+      addWalk(minutes, walkTimestamp);
+      startCountdown(walkTimestamp);
+      appDrawer.close();
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "An error occurred");
+      setSelectedTime(getCurrentTimeString()); //Reset the time input to the current time if there is an error
+    }
   };
 
   //function to open the app drawer and snap it to the desired position when the user clicks the walk done button.
@@ -79,7 +88,26 @@ export const DurationInputDrawer = ({
       <AppDrawer drawer={appDrawer}>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           Finished walking at{" "}
-          <Timepicker value={selectedTime} onChange={setSelectedTime} />
+          <Timepicker
+            value={selectedTime}
+            onChange={(time) => {
+              setSelectedTime(time);
+              setError(null);
+            }}
+          />
+          {error && (
+            <div
+              style={{
+                color: "#dc2626",
+                fontSize: "0.875rem",
+                padding: "0.5rem",
+                backgroundColor: "#fee2e2",
+                borderRadius: "0.375rem",
+              }}
+            >
+              {error}
+            </div>
+          )}
           How long was the walk?
           <Button variant="primary" onClick={() => handleCompleteWalk(15)}>
             15 minutes
