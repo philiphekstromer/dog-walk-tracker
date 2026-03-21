@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import { format, set, isValid, getTime } from "date-fns";
 import { useState } from "react";
 import { Timepicker } from "./Timepicker";
+import styles from "./DurationInputDrawer.module.css";
 
 type DurationInputDrawerProps = {
   startCountdown: (timestamp: number) => void;
@@ -86,15 +87,17 @@ export const DurationInputDrawer = ({
   return (
     <>
       <AppDrawer drawer={appDrawer}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          Finished walking at{" "}
-          <Timepicker
-            value={selectedTime}
-            onChange={(time) => {
-              setSelectedTime(time);
-              setError(null);
-            }}
-          />
+        <div className={styles.drawerContent}>
+          <div className={styles.timeInputContainer}>
+            Finished walking at
+            <Timepicker
+              value={selectedTime}
+              onChange={(time) => {
+                setSelectedTime(time);
+                setError(null);
+              }}
+            />
+          </div>
           {error && (
             <div
               style={{
