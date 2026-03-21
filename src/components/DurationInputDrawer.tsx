@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Timepicker } from "./Timepicker";
 
 type DurationInputDrawerProps = {
-  startCountdown: () => void;
+  startCountdown: (timestamp: number) => void;
   addWalk: (minutes: number, timestamp: number) => void;
 };
 
