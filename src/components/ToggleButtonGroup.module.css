@@ -13,7 +13,7 @@
   font-weight: 600;
   transition: all 0.2s ease-in-out;
   background-color: #eeeeee;
-  color: #1a1a1a;
+  color: var(--color-text-primary);
   outline: none;
 }
 

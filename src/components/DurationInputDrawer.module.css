@@ -1,0 +1,11 @@
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.timeInputContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}

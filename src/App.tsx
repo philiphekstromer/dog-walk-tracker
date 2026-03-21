@@ -12,6 +12,7 @@ import { Button } from "./components/Button";
 import { Trash2 } from "lucide-react";
 import { Header } from "./components/Header";
 import { Card } from "./components/Card";
+import { Progress } from "./components/Progress";
 
 function App() {
   // --- STATES ---
@@ -46,11 +47,12 @@ function App() {
 
   // --- APP LOGIC ---
 
-  const { startCountdown, remainingTime, status } = useCountdown({
-    intervalHours,
-    nextWalkTime,
-    setNextWalkTime,
-  }); //Custom hook to manage the countdown logic for the next walk
+  const { startCountdown, remainingTime, status, intervalMilliseconds } =
+    useCountdown({
+      intervalHours,
+      nextWalkTime,
+      setNextWalkTime,
+    }); //Custom hook to manage the countdown logic for the next walk
 
   const { walks, addWalk, deleteWalk } = useWalks(); // Custom hook to manage walk history
 
@@ -89,7 +91,13 @@ function App() {
           onChangeInterval={setIntervalHours}
         />
         {status === "active" && remainingTime !== null ? (
-          <h2>{formatCountdownTime(remainingTime)}</h2>
+          <div>
+            <h2>{formatCountdownTime(remainingTime)}</h2>
+            <Progress
+              value={remainingTime !== null ? remainingTime : 0}
+              max={intervalMilliseconds}
+            />
+          </div>
         ) : status === "expired" ? (
           <h2>Time for a walk!</h2>
         ) : status === "idle" ? (
