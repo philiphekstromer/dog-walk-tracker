@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import { format, set, isValid, getTime } from "date-fns";
 import { useState } from "react";
 import { Timepicker } from "./Timepicker";
+import { NumberSpinner } from "./NumberSpinner";
 import styles from "./DurationInputDrawer.module.css";
 
 type DurationInputDrawerProps = {
@@ -17,6 +18,9 @@ export const DurationInputDrawer = ({
   addWalk,
 }: DurationInputDrawerProps) => {
   const appDrawer = useAppDrawer();
+
+  //State to hold the duration of the walk in minutes. .
+  const [walkDuration, setWalkDuration] = useState(15);
 
   //Function to get the current time in 'HH:mm' format
   const getCurrentTimeString = (): string => {
@@ -69,6 +73,7 @@ export const DurationInputDrawer = ({
       const walkTimestamp = getTimestampFromTimeString(selectedTime);
       addWalk(minutes, walkTimestamp);
       startCountdown(walkTimestamp);
+      setWalkDuration(15); //Reset the walk duration to the default value for the next time the drawer is opened
       appDrawer.close();
     } catch (error) {
       setError(error instanceof Error ? error.message : "An error occurred");
@@ -80,7 +85,7 @@ export const DurationInputDrawer = ({
   const handleOpenDurationInput = () => {
     appDrawer.open();
     setTimeout(() => {
-      appDrawer.snapTo(0.6); //Snap to 60% of the screen height
+      appDrawer.snapTo(0.75); //Snap to 60% of the screen height
     }, 0);
   };
 
@@ -111,15 +116,19 @@ export const DurationInputDrawer = ({
               {error}
             </div>
           )}
-          How long was the walk?
-          <Button variant="primary" onClick={() => handleCompleteWalk(15)}>
-            15 minutes
-          </Button>
-          <Button variant="primary" onClick={() => handleCompleteWalk(30)}>
-            30 minutes
-          </Button>
-          <Button variant="primary" onClick={() => handleCompleteWalk(45)}>
-            45 minutes
+          <div className={styles.WalkTimeInputContainer}>
+            <NumberSpinner
+              value={walkDuration}
+              min={5}
+              max={120}
+              onUpdate={setWalkDuration}
+            />
+          </div>
+          <Button
+            variant="primary"
+            onClick={() => handleCompleteWalk(walkDuration)}
+          >
+            Add walk
           </Button>
         </div>
       </AppDrawer>
