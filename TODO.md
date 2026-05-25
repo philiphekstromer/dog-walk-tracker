@@ -6,6 +6,8 @@ This is the todo for the dog walk tracker app
 
 - [ ] Create light and dark theme
 - [ ] Add theme switch to settings
+- [ ] `.backdrop` - `background-color: rgba(0, 0, 0, 0.4);` → Use `--color-backdrop` in appdrawer.module.css
+- [ ] `.listCard` - `border: 1px solid #ccc;` → Use `--color-card-border`in card-module.css
 
 # BACKLOG
 
