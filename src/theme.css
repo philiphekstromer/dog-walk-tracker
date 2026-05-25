@@ -35,11 +35,8 @@
   --color-card-border: light-dark(var(--gray-300), var(--gray-600));
 
   /* Toggle button tokens */
-  --color-togglebutton-background-secondary: light-dark(
-    var(--gray-300),
-    var(--gray-600)
-  );
-  --color-togglebutton-background-secondary-hover: light-dark(
+  --color-togglebutton-background: light-dark(var(--gray-300), var(--gray-600));
+  --color-togglebutton-background-hover: light-dark(
     var(--gray-400),
     var(--gray-500)
   );
