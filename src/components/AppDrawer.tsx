@@ -13,6 +13,7 @@ export const AppDrawer = ({ drawer, children }: AppDrawerProps) => {
       {...drawer.props}
       backdropClass={styles.backdrop}
       containerClass={styles.container}
+      containerBackgroundColor="var(--color-background)"
     >
       {children}
     </BottomSheet>
