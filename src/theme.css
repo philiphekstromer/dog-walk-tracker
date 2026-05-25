@@ -6,18 +6,23 @@
   --green-400: #378530;
   --green-500: #108c05;
   --green-600: #0e7a04;
+  --gray-300: #cccccc;
+  --gray-400: #999999;
+  --gray-500: #666666;
+  --gray-600: #333333;
 
-  /*Text variables*/
+  /*Text tokens*/
   --color-text-primary: light-dark(#1a1a1a, #f5f5f5);
+  --color-text-on-color: light-dark(#ffffff, #ffffff);
 
-  /*Background variables*/
+  /*Background tokens*/
   --color-background: light-dark(#ffffff, #121212);
 
-  /*Link variables*/
+  /*Link tokens*/
   --color-link: light-dark(#646cff, #646cff);
   --color-link-hover: light-dark(#535bf2, #535bf2);
 
-  /*Button variables*/
+  /*Button tokens*/
   --color-button-primary: light-dark(var(--green-500), var(--green-500));
   --color-button-primary-hover: light-dark(var(--green-600), var(--green-600));
   --color-button-secondary: light-dark(var(--green-300), var(--green-300));
@@ -25,4 +30,37 @@
     var(--green-400),
     var(--green-400)
   );
+
+  /* Card tokens */
+  --color-card-border: light-dark(var(--gray-300), var(--gray-600));
+
+  /* Toggle button tokens */
+  --color-togglebutton-background-secondary: light-dark(
+    var(--gray-300),
+    var(--gray-600)
+  );
+  --color-togglebutton-background-secondary-hover: light-dark(
+    var(--gray-400),
+    var(--gray-500)
+  );
+  --color-togglebutton-background-active: light-dark(
+    var(--gray-600),
+    var(--gray-300)
+  );
+  --color-togglebutton-background-active-hover: light-dark(
+    var(--gray-500),
+    var(--gray-400)
+  );
+
+  /* Progress bar tokens */
+  --color-progress-background: light-dark(#eee, #333);
+  --color-progress-border: light-dark(var(--green-500), var(--green-500));
+  --color-progress-value-start: var(--green-600);
+  --color-progress-value-end: var(--green-300);
+
+  /* Backdrop tokens */
+  --color-backdrop: rgba(0, 0, 0, 0.4);
+
+  /* Shadow tokens */
+  --shadow-elevation: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
