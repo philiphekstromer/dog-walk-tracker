@@ -9,7 +9,7 @@ button {
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--color-text-on-color);
   cursor: pointer;
   transition: border-color 0.25s;
 }
