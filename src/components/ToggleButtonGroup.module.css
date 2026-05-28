@@ -8,26 +8,25 @@
 .toggleButton {
   padding: 0.5rem 1rem;
   cursor: pointer;
-  border: 1px solid #444;
   border-radius: 6px;
   font-weight: 600;
   transition: all 0.2s ease-in-out;
-  background-color: #eeeeee;
+  background-color: var(--color-togglebutton-background);
   color: var(--color-text-primary);
   outline: none;
 }
 
 .toggleButton:hover {
-  background-color: #e0e0e0;
+  background-color: var(--color-togglebutton-background-hover);
   transform: translateY(-1px);
 }
 
 /* This class will be applied conditionally */
 .active {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: var(--color-togglebutton-background-active);
+  color: var(--color-text-on-color);
 }
 
 .active:hover {
-  background-color: #333333;
+  background-color: var(--color-togglebutton-background-active-hover);
 }
