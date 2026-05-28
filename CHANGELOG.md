@@ -1,6 +1,28 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.5.0] - 2026-05-28
+
+### 🚀 Features
+
+- Change favicon
+
+### 🐛 Bug Fixes
+
+- Make the app work properly in dark theme
+
+### 💼 Other
+
+- NumberSpinner component
+- Add pr-preview action
+
+### 📚 Documentation
+
+- Update todo
+
+### ⚙️ Miscellaneous Tasks
+
+- Release v0.4.0
 ## [0.4.0] - 2026-03-21
 
 ### 🚀 Features
