@@ -68,17 +68,13 @@ function App() {
     <>
       <ReleaseNotesDrawer
         snapHeightPercent={0.4}
-        version="0.4.0"
+        version="0.5.0"
         content={
           <>
             <ul>
               <li>
-                You can now pick the time of your walk in the new time picker.
-                This allows you to track past walks that you forgot to log.
-              </li>
-              <li>
-                Added a progress bar to visualize the time remaining until the
-                next walk.
+                The app now has a fully working dark theme, so you can enjoy the
+                app in all lighting conditions!
               </li>
             </ul>
           </>
